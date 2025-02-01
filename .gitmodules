@@ -1,0 +1,3 @@
+[submodule "drawer_frontend"]
+	path = drawer_frontend
+	url = https://github.com/Coderwelsch/wled-2d-pixel-drawer.git
