@@ -227,6 +227,10 @@ void initServer()
   DefaultHeaders::Instance().addHeader(F("Access-Control-Allow-Methods"), "*");
   DefaultHeaders::Instance().addHeader(F("Access-Control-Allow-Headers"), "*");
 
+  server.on(F("/draw"), HTTP_GET, [](AsyncWebServerRequest *request) { 
+    handleStaticContent(request, "", 200, FPSTR(CONTENT_TYPE_HTML), PAGE_draw, PAGE_draw_length); 
+  });
+
 #ifdef WLED_ENABLE_WEBSOCKETS
   #ifndef WLED_DISABLE_2D 
   server.on(F("/liveview2D"), HTTP_GET, [](AsyncWebServerRequest *request) {
