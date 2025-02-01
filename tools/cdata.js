@@ -158,7 +158,7 @@ async function specToChunk(srcDir, s) {
       const zip = zlib.gzipSync(await minify(str, s.filter), { level: zlib.constants.Z_BEST_COMPRESSION });
       console.info("Minified and compressed " + s.file + " from " + originalLength + " to " + zip.length + " bytes");
       const result = hexdump(zip);
-      chunk += `const uint16_t ${s.name}_length = ${zip.length};\n`;
+      chunk += `const uint ${s.name}_length = ${zip.length};\n`;
       chunk += `const uint8_t ${s.name}[] PROGMEM = {\n${result}\n};\n\n`;
       return chunk;
     } else {
@@ -333,6 +333,12 @@ writeChunks(
 writeChunks(
   "wled00/data",
   [
+    {
+      file: "draw.htm",
+      name: "PAGE_draw",
+      method: "gzip",
+      filter: "html-minify",
+    },
     {
       file: "usermod.htm",
       name: "PAGE_usermod",
