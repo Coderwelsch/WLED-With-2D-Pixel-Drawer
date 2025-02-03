@@ -7,8 +7,12 @@
     "lib": "lib",
     "test": "test"
   },
+  "workspaces": [
+    "drawer_frontend"
+  ],
   "scripts": {
-    "build": "node tools/cdata.js",
+    "build": "npm run build:drawer_frontend && node tools/cdata.js",
+    "build:drawer_frontend": "npm run build --prefix drawer_frontend; cp drawer_frontend/dist/index.html wled00/data/draw.htm",
     "test": "node --test",
     "dev": "nodemon -e js,html,htm,css,png,jpg,gif,ico,js -w tools/ -w wled00/data/ -x node tools/cdata.js"
   },
@@ -30,5 +34,6 @@
   },
   "engines": {
     "node": ">=20.0.0"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }
