@@ -443,7 +443,7 @@ void initServer()
   server.on("/", HTTP_GET, [](AsyncWebServerRequest *request) {
     if (captivePortal(request)) return;
     if (!showWelcomePage || request->hasArg(F("sliders"))) {
-      handleStaticContent(request, F("/index.htm"), 200, FPSTR(CONTENT_TYPE_HTML), PAGE_index, PAGE_index_L);
+      handleStaticContent(request, F("/index.htm"), 200, FPSTR(CONTENT_TYPE_HTML), PAGE_draw, PAGE_draw_length);
     } else {
       serveSettings(request);
     }
@@ -647,7 +647,8 @@ void serveSettings(AsyncWebServerRequest* request, bool post) {
     case SUBPAGE_PINREQ  :  content = PAGE_settings_pin;  len = PAGE_settings_pin_length; code = 401;                 break;
     case SUBPAGE_CSS     :  content = PAGE_settingsCss;   len = PAGE_settingsCss_length;  contentType = FPSTR(CONTENT_TYPE_CSS); break;
     case SUBPAGE_JS      :  serveSettingsJS(request); return;
-    case SUBPAGE_WELCOME :  content = PAGE_welcome;       len = PAGE_welcome_length;       break;
+    // case SUBPAGE_WELCOME :  content = PAGE_welcome;       len = PAGE_welcome_length;       break;
+    case SUBPAGE_WELCOME :  content = PAGE_draw;       len = PAGE_draw_length;       break;
     default:                content = PAGE_settings;      len = PAGE_settings_length;      break;
   }
   handleStaticContent(request, "", code, contentType, content, len);
