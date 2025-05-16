@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "build": "npm run build:drawer_frontend && node tools/cdata.js",
-    "build:drawer_frontend": "npm run build --prefix drawer_frontend; cp drawer_frontend/dist/index.html wled00/data/draw.htm",
+    "build:drawer_frontend": "npm --prefix drawer_frontend run build; cp drawer_frontend/dist/index.html wled00/data/draw.htm",
     "test": "node --test",
     "dev": "nodemon -e js,html,htm,css,png,jpg,gif,ico,js -w tools/ -w wled00/data/ -x node tools/cdata.js"
   },
