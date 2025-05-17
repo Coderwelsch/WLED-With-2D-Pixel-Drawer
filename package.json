@@ -7,13 +7,11 @@
     "lib": "lib",
     "test": "test"
   },
-  "workspaces": [
-    "drawer_frontend"
-  ],
   "scripts": {
     "build": "npm run build:drawer_frontend && node tools/cdata.js",
     "build:drawer_frontend": "npm --prefix drawer_frontend run build; cp drawer_frontend/dist/index.html wled00/data/draw.htm",
     "test": "node --test",
+    "upload": "platformio run --target upload --upload-port /dev/cu.usbserial-0001",
     "dev": "nodemon -e js,html,htm,css,png,jpg,gif,ico,js -w tools/ -w wled00/data/ -x node tools/cdata.js"
   },
   "repository": {
@@ -28,9 +26,15 @@
   "homepage": "https://github.com/wled-dev/WLED#readme",
   "dependencies": {
     "clean-css": "^5.3.3",
+    "enhanced-resolve": "^5.18.1",
+    "gensync": "^1.0.0-beta.2",
     "html-minifier-terser": "^7.2.0",
-    "web-resource-inliner": "^7.0.0",
-    "nodemon": "^3.1.9"
+    "js-tokens": "^9.0.1",
+    "jsesc": "^3.1.0",
+    "lightningcss": "^1.30.1",
+    "nodemon": "^3.1.9",
+    "svg-tags": "^1.0.0",
+    "web-resource-inliner": "^7.0.0"
   },
   "engines": {
     "node": ">=20.0.0"
