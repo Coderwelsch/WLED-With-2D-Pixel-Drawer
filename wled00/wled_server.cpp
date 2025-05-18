@@ -231,6 +231,10 @@ void initServer()
     handleStaticContent(request, "", 200, FPSTR(CONTENT_TYPE_HTML), PAGE_draw, PAGE_draw_length); 
   });
 
+  server.on(F("/welcome"), HTTP_GET, [](AsyncWebServerRequest *request) {
+    handleStaticContent(request, "", 200, FPSTR(CONTENT_TYPE_HTML),  PAGE_welcome, PAGE_welcome_length);
+  });
+
 #ifdef WLED_ENABLE_WEBSOCKETS
   #ifndef WLED_DISABLE_2D 
   server.on(F("/liveview2D"), HTTP_GET, [](AsyncWebServerRequest *request) {
